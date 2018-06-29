@@ -1,0 +1,23 @@
+{
+  "name": "personalidad_en_chat",
+  "version": "1.0.0",
+  "description": "programa que tiene como objetivo poder definir la personalidad de los que chatean de acuerdo al modelo de los 5 grandes ",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha mocha.test.js"
+  },
+  "keywords": [
+    "5",
+    "grandes",
+    "personalidad",
+    "chat"
+  ],
+  "author": "Andres Manuel Arias Ariza",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "@types/node": "^10.5.0"
+  }
+}
