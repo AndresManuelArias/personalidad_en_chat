@@ -1,0 +1,1 @@
+{"version":3,"file":"persona.js","sourceRoot":"","sources":["../logic/persona.ts"],"names":[],"mappings":";;;AAMA,MAAc,OAAO;IAEV,cAAc,CAAC,OAAe;QACjC,OAAO,EAAC,KAAK,EAAC,OAAO,CAAC,KAAK;YACvB,eAAe,EAAC,OAAO,CAAC,eAAe;YACvC,OAAO,EAAC,OAAO,CAAC,OAAO,EAAC,CAAA;IAChC,CAAC;CACJ;AAPD,0BAOC"}
