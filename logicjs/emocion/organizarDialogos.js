@@ -16,6 +16,7 @@ class OrganizarDialogos {
                 // console.log('this.criterioPropiedad',this.criterioPropiedad);
                 return nombre == dialogo[this.criterioPropiedad];
             });
+            criterioDialogo[nombre]['dialogos'] = "";
             criterioDialogo[nombre]['dialogoPorDias'].forEach((dialogue) => {
                 criterioDialogo[nombre]['dialogos'] += dialogue.dialogo + ". ";
             });

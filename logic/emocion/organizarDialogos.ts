@@ -13,7 +13,8 @@ export class OrganizarDialogos {
             criterioDialogo[nombre]['dialogoPorDias'] = mensajesDescompuestos.filter(dialogo=> {
                 // console.log('dialogo',dialogo);
                 // console.log('this.criterioPropiedad',this.criterioPropiedad);
-                return nombre == dialogo[this.criterioPropiedad]});           
+                return nombre == dialogo[this.criterioPropiedad]}); 
+                criterioDialogo[nombre]['dialogos'] = ""         
             criterioDialogo[nombre]['dialogoPorDias'].forEach((dialogue)=>{
                 criterioDialogo[nombre]['dialogos'] +=   dialogue.dialogo+". ";
             });

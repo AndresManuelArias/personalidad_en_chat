@@ -1,7 +1,5 @@
 "use strict";
-const fs = require('fs'), Sentiment = require('sentiment'), csvdata = require('csvdata');
-let personas = JSON.parse(fs.readFileSync('../../base_data/nombreUsuarios.json', 'utf-8'));
-let mensajesPorDias = JSON.parse(fs.readFileSync('../../base_data/mensajesPorDias.json', 'utf-8'));
+const Sentiment = require('sentiment');
 [];
 class SentimentLenguajeNatural {
     constructor() {
@@ -77,14 +75,7 @@ function valoracionTexto(dataCalification1) {
         return variasCalificaciones;
     };
 }
-csvdata.load('../../base_data/valoracion palabras - calificacion.csv', {
-    delimiter: ',',
-    encoding: 'utf8',
-    log: true,
-    objName: false,
-    parse: true,
-    stream: false
-}).then(data => {
+function generarEmocionesDialogos(data, personas, mensajesPorDias) {
     let coleccionPersona = {};
     personas.forEach((nombre) => {
         coleccionPersona[nombre] = calificacionPalabrasPersona(data, nombre);
@@ -95,7 +86,7 @@ csvdata.load('../../base_data/valoracion palabras - calificacion.csv', {
     let trainOpinionPersona = valoracionTexto(coleccionPersona);
     let emotionDate = [];
     for (let fecha in mensajesPorDias) {
-        mensajesPorDias[fecha].dialogos;
+        console.log(" mensajesPorDias[fecha].dialogos", mensajesPorDias[fecha].dialogos);
         var results = trainOpinionPersona(mensajesPorDias[fecha].dialogos);
         console.log(results);
         let scorePerson = [];
@@ -104,19 +95,9 @@ csvdata.load('../../base_data/valoracion palabras - calificacion.csv', {
         }
         //aqui se va a colocar la opinion del sentimiento de las palabras de ese dia por otras apis
         scorePerson.push({ name: 'sentiment natural', score: sentimentLenguajeNatural.calificacionLenguajeNatural(mensajesPorDias[fecha].dialogos) });
-        emotionDate.push({ scorePersons: scorePerson, date: fecha });
+        emotionDate.push({ scorePersons: scorePerson, date: fecha, dialogos: mensajesPorDias[fecha].dialogos });
     }
-    fs.writeFile(`../../base_data/resultEmotionDate.json`, JSON.stringify(emotionDate), error => {
-        if (error)
-            console.log(error);
-        else
-            console.log(`El archivo fue creado resultEmotionDate`);
-    });
-    fs.writeFile(`../../base_data/promedioEmotionPalabras.json`, JSON.stringify(coleccionPersona['todos']), error => {
-        if (error)
-            console.log(error);
-        else
-            console.log(`El archivo fue creado promedioEmotionPalabras`);
-    });
-});
+    return [emotionDate, coleccionPersona];
+}
+module.exports.generarEmocionesDialogos = generarEmocionesDialogos;
 //# sourceMappingURL=readWordAnalityEmotion.js.map

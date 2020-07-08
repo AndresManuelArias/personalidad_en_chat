@@ -1,5 +1,3 @@
-const fs = require('fs'),
- resultEmotionDate = JSON.parse(fs.readFileSync('../base_data/resultEmotionDate.json', 'utf-8'));
 
 
 interface EsqueletoHTML {
@@ -85,10 +83,12 @@ function graficaLine(linesData:string):string {
                 }
             }
         });`
-}
+} 
 function graficaCompleta(emotionDate:EmotionDate[]):string{   
    return graficaLine(dataLines(emotionDate));
 }
+
+module.exports. graficaCompleta = graficaCompleta
 function encapsularHTML(esqueletoHTML:EsqueletoHTML):string{
     return `
 <!DOCTYPE html>
@@ -114,13 +114,4 @@ function encapsularHTML(esqueletoHTML:EsqueletoHTML):string{
 </body>    
 </html>  `;
 }
-let htmlFile =encapsularHTML({title:'Emociones chat',
-body:`<canvas id="canvas" width="441" height="220" class="chartjs-render-monitor" style="display: block; width: 441px; height: 220px;"></canvas>`,
-script:graficaCompleta(resultEmotionDate)});
-
-fs.writeFile(`../public/viewEmotionDate.html`,htmlFile, error => {
-    if (error)
-        console.log(error);
-    else
-        console.log(`El archivo fue creado viewEmotionDate`);
-});
+module.exports.encapsularHTML = encapsularHTML;
